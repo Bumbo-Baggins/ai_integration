@@ -66,7 +66,7 @@ def unenroll(course_id: str):
 
 # Page 1: Dashboard
 if st.session_state.current_page == "dashboard":
-    st.title(f"Dashboard: {CURRENT_STUDENT['name']}")
+    st.title(f"Dashboard: {CURRENT_STUDENT['name']} ({CURRENT_STUDENT['email']})")
     display_message()
 
     st.header("Enrolled Classes")
@@ -91,7 +91,10 @@ if st.session_state.current_page == "dashboard":
 
     st.divider()
     st.header("Add a Class")
-    enrollment_key = st.text_input("Enter Course Enrollment Key")
+    enrollment_key = st.text_input(
+        "Enter Course Enrollment Key", 
+        placeholder="E.g. 'MISY350-SPRING'"
+    )
     if st.button("Submit Key"):
         if enrollment_key:
             enroll(enrollment_key)
